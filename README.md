@@ -79,6 +79,8 @@ export async function getStaticProps() {
 
 ```
 
+<br/>
+
 - reducer pattern 활용
 ```javascript
 const calculator = {

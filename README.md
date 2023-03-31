@@ -79,6 +79,44 @@ export async function getStaticProps() {
 
 ```
 
+- reducer pattern 활용
+```javascript
+const calculator = {
+  default: (checkList: Product[]) => {
+    ....
+    return totalValue;
+  },
+  amount: (checkList: Product[], discountAmount: any) => {
+    ....
+    return totalValue - discountAmount;
+  },
+  rate: (checkList: Product[], discountRate: any) => {
+    ....
+    return totalValue;
+  },
+};
+
+const calculateReducer = (state: number, action: Action) => {
+  switch (action.type) {
+    case "amount":
+      return calculator.amount(
+        action.payload.checkList,
+        action.payload.coupon?.discountAmount
+      );
+    case "rate":
+      return calculator.rate(
+        action.payload.checkList,
+        action.payload.coupon?.discountRate
+      );
+    case "default":
+      return calculator.default(action.payload.checkList);
+    default:
+      return state;
+  }
+};
+```
+
+
 ***
 <br/>
 
